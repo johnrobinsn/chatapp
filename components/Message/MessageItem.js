@@ -12,8 +12,13 @@ import { useEffect, useState } from 'react'
 
 export const MessageItem = ({ msg = {}, myUsername }) => {
 	const { tokens } = useTheme()
-	if (msg.content.imageId) {
-		// console.log('the message', msg)
+	//if (msg.content.imageId) {
+	console.log('the message', msg)
+	//}
+	if (!msg.content) {
+		console.log('No Content in Message')
+		//return
+		msg.content = ''  // Stuff in empty string to not crash
 	}
 	const isMyMsg = msg.owner === myUsername
 	const isEdited = msg.createdAt !== msg.updatedAt
