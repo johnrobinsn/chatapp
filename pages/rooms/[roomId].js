@@ -1,4 +1,4 @@
-import { Flex, Heading, useTheme, View } from '@aws-amplify/ui-react'
+import { Flex, Heading, useTheme, View, Link } from '@aws-amplify/ui-react'
 import { useEffect, useState } from 'react'
 import { withSSRContext } from 'aws-amplify'
 import { InputArea } from '../../components/InputArea'
@@ -10,6 +10,7 @@ import { listMessagesForRoom, listRooms } from '../../src/graphql/queries'
 import { createMessage } from '../../src/graphql/mutations'
 import { onCreateMessageByRoomId } from '../../src/graphql/subscriptions'
 import { useRouter } from 'next/router'
+import NextLink from 'next/link'
 Amplify.configure({ ...config, ssr: true })
 
 function RoomPage({ roomsList, currentRoomData, username }) {
@@ -85,6 +86,9 @@ function RoomPage({ roomsList, currentRoomData, username }) {
 			<View>
 				<Flex direction={{ base: 'column', medium: 'row' }}>
 					<ConversationBar rooms={rooms} onRoomChange={handleRoomChange} />
+					<NextLink href={`/`}>
+							<Link>Back</Link>
+					</NextLink>
 					<View flex={{ base: 0, medium: 1 }}>
 						<View margin="0 auto" maxWidth={{ base: '95vw', medium: '100vw' }}>
 							<Heading
