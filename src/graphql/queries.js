@@ -7,6 +7,16 @@ export const listRooms = /* GraphQL */ `
       items {
         id
         name
+        messages {
+          items {
+            id
+            owner
+            createdAt
+            updatedAt
+            roomId
+          }
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -19,6 +29,10 @@ export const listMessagesForRoom = /* GraphQL */ `
     listMessagesForRoom(roomId: $roomId, sortDirection: $sortDirection) {
       items {
         id
+        content {
+          text
+          imageId
+        }
         owner
         createdAt
         updatedAt
